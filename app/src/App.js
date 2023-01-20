@@ -1,7 +1,7 @@
 
 // import './App.css';
 import React from "react";
-import Fibeth_task from "./Components/Fibeth_task";
+import Fiveth_task from "./Components/Fiveth_task";
 
 import First_task from "./Components/First_task";
 import Fourth_task from "./Components/Fourth_task";
@@ -13,14 +13,6 @@ function App() {
   return (
     <div className="App" style={{display: 'flex', flexDirection:'column', padding: '50px' }}>
       <First_task />
-      <p>{a}</p>
-      <Second_task />
-      <p>{a}</p>
-      <Third_task />
-			<p>{a}</p>
-			<Fourth_task />
-			<p>{a}</p>
-			<Fibeth_task />
     </div>
   );
 }
