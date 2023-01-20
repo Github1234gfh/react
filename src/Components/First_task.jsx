@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { nanoid } from 'nanoid'
+import { isEditableInput } from '@testing-library/user-event/dist/utils'
 
 export default function First_task() {
 	const a = '-'.repeat(100)
@@ -9,30 +10,65 @@ export default function First_task() {
 		display: 'wrap',
 	}
 
-	const [values, setValues] = useState([])
-	const [edit, setEdit] = useState([])
-	const [value, setValue] = useState({id: nanoid(), name: '', catg: '', cost: ''})
+	const [value, setValue] = useState({id: nanoid(), name: '', catg: '', cost: '', edit: 'Edit'})
 	const [InitProps, setInitProps] = useState([
 		{
 			id: nanoid(),
 			name: "prop1",
 			catg: "catg1",
 			cost: 100,
+			redact: false,
+			edit: 'Edit'
 		},
 		{
 			id: nanoid(),
 			name: "prop2",
 			catg: "catg2",
 			cost: 200,
+			redact: false,
+			edit: 'Edit'
 		},
 		{
 			id: nanoid(),
 			name: "prop3",
 			catg: "catg3",
 			cost: 300,
+			redact: false,
+			edit: 'Edit'
 		},
 	])
 
+	const table =  (elem) => {
+		return (
+			<>
+				<td style={tableStyle}>{elem.name}</td>
+				<td style={tableStyle}>{elem.catg}</td>
+				<td style={tableStyle}>{elem.cost}</td>
+			</>
+		)
+	}
+
+	const input = (elem, index) => {
+		return (
+			<>
+				<td style={tableStyle}><input value={elem.name} onChange={(event) => {
+					const copy = Object.assign([], InitProps)
+					copy[index].name = event.target.value
+					setInitProps(copy)
+				}}/></td>
+				<td style={tableStyle}><input value={elem.catg}onChange={(event) => {
+					const copy = Object.assign([], InitProps)
+					copy[index].catg = event.target.value
+					setInitProps(copy)
+				}}/></td>
+				<td style={tableStyle}><input value={elem.cost}onChange={(event) => {
+					const copy = Object.assign([], InitProps)
+					copy[index].cost = event.target.value
+					setInitProps(copy)
+				}}/></td>
+			</>
+		)
+	}
   return (
     <div>
 			<div style={{display: 'flex',}}>
@@ -52,53 +88,34 @@ export default function First_task() {
 			<p>{a}</p>
 			<table>
 				<tbody>
-					<tr>
-						<th style={tableStyle}>Id</th>
 						<th style={tableStyle}>Name</th>
 						<th style={tableStyle}>Catg</th>
 						<th style={tableStyle}>Cost</th>
 						<th style={tableStyle}>Edit</th>
 						<th style={tableStyle}>Delete</th>
-					</tr>
+					
 						{InitProps.map( (elem, index) => {
-							edit.push('Edit')
 							return (
 								<tr key={index}>
-								<td style={tableStyle}>{elem.id}</td>
-								<td style={tableStyle}>{elem.name}</td>
-								<td style={tableStyle}>{elem.catg}</td>
-								<td style={tableStyle}>{elem.cost}</td>
-								<td style={tableStyle}><button onClick={() => {
-									const copyEdit = Object.assign([], edit)
-									const copyItem = Object.assign([], InitProps)
-									for (let i in elem) {
-										values.push(elem[i])
-										if (copyEdit[index] === 'Save') {
-											copyEdit[index] = 'Edit'
-											setEdit(copyEdit)
-											console.log(values)
-											copyItem[index].elem[i] = <input key={index} value={values[index]} onChange={(event) => {
-												console.log(event.target.value)
-												setValue(values[index]+event.target.value)
-											}}/>
-											setInitProps(copyItem)
-											console.log(values)
-											return
+									{elem.redact? input(elem, index): table(elem)}
+									<td style={tableStyle}><button onClick={() => {
+										const copy = Object.assign([], InitProps)
+										if (elem.redact) {
+											copy[index].redact = false
+											copy[index].edit = 'Edit'
+										} else {
+											copy[index].redact = true
+											copy[index].edit = 'Save'
 										}
-										copyItem[index].name = <input value={InitProps[index].name}/>
-										copyItem[index].catg = <input value={InitProps[index].catg}/>
-										copyItem[index].cost = <input value={InitProps[index].cost}/>
-										setInitProps(copyItem)
-										copyEdit[index] = 'Save'
-										setEdit(copyEdit)
-									}
-								}}>{edit[index]}</button></td>
-								<td style={tableStyle}><button onClick={() => {
-									const copy = Object.assign([], InitProps)
-									copy.splice(index, index+1)
-									setInitProps(copy)
-								}}>Delete</button></td>
-							</tr>
+										setInitProps(copy)
+									}}>{elem.edit}</button></td>
+
+									<td style={tableStyle}><button onClick={() => {
+										const copy = Object.assign([], InitProps)
+										copy.splice(index, index+1)
+										setInitProps(copy)
+									}}>Delete</button></td>
+								</tr>
 							)
 						})}
 				</tbody>
