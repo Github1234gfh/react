@@ -1,51 +1,91 @@
 import React, { useState } from 'react'
-import { Valid } from '../Components/Validation'
+import { IsValidEmail, IsValidPass, IsValidName, NullFieldInput } from '../Components/Validation'
 
 export const Registration = () => {
 
 
-  const [email, setEmail] = useState()
-  const [pass, setPass] = useState()
-  const [name, setName] = useState()
+	const [errname, setErrname] = useState(false)
+	const [errName, setErrName] = useState(false)
 
-  return (
-    <div className='reg-main'>
-      <form className='register-from'>
-        <input 
-          placeholder='Name'
-          className='input-form'
-          onChange={(event) => {
-            setName(event.target.value)
-          }}
-          />
-        <input 
-          placeholder='Email'
-          type={'email'}
-          className='input-form'
-          onChange={(event) => {
-            setEmail(event.target.value)
-          }}
-          />
-        <input  
-          placeholder='Password'
-          type={'password'}
-          className='input-form'
-          onChange={(event) => {
-            setPass(event.target.value)
-          }}
-          />
-        <button className='btn-from' type='submit' onClick={() => {
-          return (
-            <>
-              {
-                Valid(name, email, pass)?console.log(1):console.log(2)
-              }
-            </>
-          )
-        }}>Register</button>
-      </form>
-    </div>
-  )
+
+	const [erremail, setErremail] = useState(false)
+	const [errEmail, setErrEmail] = useState(false)
+
+	const [errpass, setErrerrpass] = useState(false)
+	const [errPass, setErrerrPass] = useState(false)
+	const [ERrpass, setERrpass] = useState(false)
+
+	const [email, setEmail] = useState('')
+	const [pass, setPass] = useState('')
+	const [name, setName] = useState('')
+
+	const changeErrpass = (per) => { setErrerrpass(per) }
+	const changeErrPass = (per) => { setErrerrPass(per) }
+	const changeERrpass = (per) => { setERrpass(per) }
+
+	const changeErremail = (per) => { setErremail(per) }
+	const changeErrEmail = (per) => { setErrEmail(per) }
+
+	const changeErrName = (par) => { setErrName(par) }
+	const changeErrname = (par) => { setErrname(par) }
+
+	return (
+		<div className='reg-main'>
+			<div className='register-from'>
+				<input
+					placeholder='Name'
+					className='input-form'
+					onChange={(event) => {
+						const value = event.target.value
+						setName(value)
+						IsValidName(value, changeErrname)
+						NullFieldInput(value, changeErrName)
+					}}
+				/>
+				{
+					errname ? <span style={{ color: 'red' }}>Name must be more than 2 characters</span> : errName ? <span style={{ color: 'red' }}>Name - required field</span> : null
+				}
+				<input
+					placeholder='Email'
+					type={'email'}
+					className='input-form'
+					onChange={(event) => {
+						const value = event.target.value
+						setEmail(value)
+						IsValidEmail(value, changeErremail)
+						NullFieldInput(value, changeErrEmail)
+					}}
+				/>
+				{
+					erremail ? <span style={{ color: 'red' }}>Invalid email address! </span> : errEmail ? <span style={{ color: 'red' }}>Email - required field</span> : null
+				}
+				<input
+					placeholder='Password'
+					type={'password'}
+					className='input-form'
+					onChange={(event) => {
+						const value = event.target.value
+						setPass(value)
+						IsValidPass(value, changeErrpass, changeERrpass)
+						NullFieldInput(value, changeErrPass)
+					}}
+				/>
+				{
+					errpass ? <span style={{ color: 'red' }}>Password must include @, -!</span> : errPass ? <span style={{ color: 'red' }}>Password - required field</span> :ERrpass ? <span style={{ color: 'red' }}>Password must be more than 8 characters</span>:null
+				}
+				<input value={"Register"} className='btn-from' type='submit' onClick={() => {
+					NullFieldInput(pass, changeErrPass)
+					NullFieldInput(email, changeErrEmail)
+					NullFieldInput(name, changeErrName)
+					if (!errName && !errname && !errEmail && !erremail && !errPass && !errpass && !ERrpass ){
+						console.log(true)
+					} 
+
+					else {
+						console.log(false)
+					}
+				}} />
+			</div>
+		</div>
+	)
 }
-
-
