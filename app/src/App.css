@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0px 50px;
+}
+
+.header-inner {
+  background: #D9D9D9;
+}
+
+.header {
+  padding: 30px 60px;
+  display: flex;
+  gap: 20px;
+}
+
+.main-inner {
+  background: rgb(255, 237, 237);
+  height: 5000px;
+}
+
+.main-conainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 1em;
+  padding: 40px 0px;
+}
+
+.card-item {
+  padding: 20px;
+  background: pink;
+  border-radius: 10px;
+}
+
+.item-text {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.reg-main {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
+.register-from {
+  padding: 50px;
+  background: rgb(250, 224, 224);
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  gap: 20px;
+}
+
+.input-form {
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.btn-from {
+  background: white;
+  padding: 10px;
+  width: 50%;
+  align-self: center;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+  font-size: 20px;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.btn-from:hover {
+  background: rgb(249, 244, 244);
+}
