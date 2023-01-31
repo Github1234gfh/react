@@ -1,0 +1,62 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  gap: 30px;
+  text-decoration: none;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-size: 25px;
+  color: red;
+}
+
+.books {
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.product-link {
+  color: rgb(54, 54, 54);
+  font-size: 30px;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.product-link:hover {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 40px;
+
+}
+
+.product-iten {
+  color: black;
+  font-size: 20px;
+}
+
+.product-iten span {
+  color: rgb(118, 117, 117);
+}
+
+.input-add {
+  width: 300px;
+}
