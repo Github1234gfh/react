@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
+import { redirect } from 'react-router-dom'
 import { IsValidEmail, IsValidPass, IsValidName, NullFieldInput } from '../Components/Validation'
 
 export const Registration = () => {
 
-
 	const [errname, setErrname] = useState(false)
 	const [errName, setErrName] = useState(false)
-
 
 	const [erremail, setErremail] = useState(false)
 	const [errEmail, setErrEmail] = useState(false)
@@ -29,9 +28,20 @@ export const Registration = () => {
 	const changeErrName = (par) => { setErrName(par) }
 	const changeErrname = (par) => { setErrname(par) }
 
+	const onSubmit = (e) => {
+		e.preventDefault()
+		NullFieldInput(pass, changeErrPass)
+		NullFieldInput(email, changeErrEmail)
+		NullFieldInput(name, changeErrName)
+		if (!errName && !errname && !errEmail && !erremail && !errPass && !errpass && !ERrpass) {
+			return redirect("/login");
+		}
+		return false
+	}
+
 	return (
 		<div className='reg-main'>
-			<div className='register-from'>
+			<form onSubmit={(e) => onSubmit(e)} className='register-from'>
 				<input
 					placeholder='Name'
 					className='input-form'
@@ -71,21 +81,10 @@ export const Registration = () => {
 					}}
 				/>
 				{
-					errpass ? <span style={{ color: 'red' }}>Password must include @, -!</span> : errPass ? <span style={{ color: 'red' }}>Password - required field</span> :ERrpass ? <span style={{ color: 'red' }}>Password must be more than 8 characters</span>:null
+					errpass ? <span style={{ color: 'red' }}>Password must include @, -!</span> : errPass ? <span style={{ color: 'red' }}>Password - required field</span> : ERrpass ? <span style={{ color: 'red' }}>Password must be more than 8 characters</span> : null
 				}
-				<input value={"Register"} className='btn-from' type='submit' onClick={() => {
-					NullFieldInput(pass, changeErrPass)
-					NullFieldInput(email, changeErrEmail)
-					NullFieldInput(name, changeErrName)
-					if (!errName && !errname && !errEmail && !erremail && !errPass && !errpass && !ERrpass ){
-						console.log(true)
-					} 
-
-					else {
-						console.log(false)
-					}
-				}} />
-			</div>
+				<input value={"Register"} className='btn-from' type='submit' />
+			</form>
 		</div>
 	)
 }
