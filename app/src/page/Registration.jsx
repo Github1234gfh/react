@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+// import { Navigate, redirect } from 'react-router-dom'
 import { IsValidEmail, IsValidPass, IsValidName, NullFieldInput } from '../Components/Validation'
 
-export const Registration = () => {
+export const Registration = ({ch, checkor}) => {
 
 	const [errname, setErrname] = useState(false)
 	const [errName, setErrName] = useState(false)
@@ -28,15 +29,21 @@ export const Registration = () => {
 	const changeErrName = (par) => { setErrName(par) }
 	const changeErrname = (par) => { setErrname(par) }
 
+	const navigate = useNavigate()
+
 	const onSubmit = (e) => {
 		e.preventDefault()
 		NullFieldInput(pass, changeErrPass)
 		NullFieldInput(email, changeErrEmail)
 		NullFieldInput(name, changeErrName)
 		if (!errName && !errname && !errEmail && !erremail && !errPass && !errpass && !ERrpass) {
-			return redirect("/login");
+			navigate("/");
+			localStorage.setItem('name', name);
+			localStorage.setItem('email', email);
+			localStorage.setItem('password', pass);
+			ch()
+			checkor()
 		}
-		return false
 	}
 
 	return (

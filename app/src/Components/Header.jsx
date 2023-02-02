@@ -14,7 +14,6 @@ export const Header = ({autnteficate}) => {
                     const copy = Object.assign([], urls)
                     if (!autnteficate) {
                         copy[1].show = false
-                        copy[2].show = false
                     }
                     if (elem.name === url) copy[index].show = false
                     if (elem.show)

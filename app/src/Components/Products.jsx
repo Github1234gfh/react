@@ -1,24 +1,44 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 
-export const Products = ({ elem }) => {
+export const Products = ({ autnteficate, elem, orders, ch, index }) => {
+
+  const navigate = useNavigate()
+
+
+  const CheckBtn = () => {
+    let check = true
+    orders.map(order => {
+      if (order.idDrink === elem.idDrink) check = false
+    })
+    if (check) return (
+      <button className='item-by-btn' onClick={() => {
+          autnteficate ? addOrder() : navigate('/registration')
+          }}>
+        To order</button>)
+    return (<Link to='/orders'><button className='item-by-btn item-by-bt-dis'>In Order</button></Link>)
+  }
+
+  const addOrder = () => {
+    const copy = Object.assign([], orders)
+    let check = true
+    copy.map(order => (order.idDrink === elem.idDrink ? check = false : false))
+    if (check) { copy.push(elem); ch(copy); localStorage.setItem('orders', JSON.stringify(copy)) }
+  }
+
   return (
     <div className='card-item'>
       <div className='container-img'>
-        <img src={elem.images[0]} alt="img" className='product-img' />
+        <img src={elem.strDrinkThumb} alt="img" className='product-img' />
       </div>
       <div className='item-column'>
         <h1 className='item-title'>
-          {elem.title}
+          {elem.strDrink}
         </h1>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img style={{ width: 30 }} src="https://pixlok.com/wp-content/uploads/2021/07/Rating-SVG-Icon-s9fd.png" alt="" />
-          <p className='item-rating'>{elem.rating}</p>
-        </div>
       </div>
       <div className='item-by-colomn'>
-        <p className='item-text'>{elem.price}$</p>
-        <button className='item-by-btn'>By</button>
+        {CheckBtn()}
       </div>
     </div>
   )

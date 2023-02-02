@@ -142,3 +142,28 @@ img {
 .btn-from:hover {
   background: rgb(249, 244, 244);
 }
+
+.item-by-bt-dis {
+  background: white;
+  color: black;
+}
+
+.item-by-bt-dis:hover {
+  background: white;
+  color: black;
+  border: solid 1px black;
+}
+
+.dfdf {
+  border-radius: 20px;
+}
+
+.btn-delete {
+  background: red;
+  border: solid 1px black;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: rgb(161, 1, 1);
+}

@@ -1,26 +1,29 @@
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Products } from './Products'
 
-export const Get_data = () => {
+export const Get_data = ({ autnteficate, orders, ch }) => {
 
-
-    const autnteficate = false
     const [products, setProducts] = useState([])
-    useEffect(() => {
-        axios
-            .get('https://dummyjson.com/products')
+    const Get = async () => {
+        await axios
+            .get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
             .then((resp) => {
-                setProducts(resp.data.products)
+                setProducts(resp.data.drinks)
             });
+    }
+    useEffect(() => {
+        Get()
     }, [])
 
     return (
         <div className='main-conainer'>
             {
-                products.map((elem) => {
+                products.map((elem, index) => {
                     return (
-                        <Products autnteficate={autnteficate} key={elem.id} elem={elem}/>
+                        <div key={elem.idDrink}>
+                            <Products autnteficate={autnteficate} elem={elem} orders={orders} ch={ch} index={index} />
+                        </div>
                     )
                 })
             }

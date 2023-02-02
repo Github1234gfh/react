@@ -5,11 +5,6 @@ export const Urls = [
         show: true
     },
     {
-        url: '/cart',
-        name: 'Cart',
-        show: false
-    },
-    {
         url: '/orders',
         name: 'Orders',
         show: false
