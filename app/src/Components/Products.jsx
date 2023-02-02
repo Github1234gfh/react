@@ -14,7 +14,7 @@ export const Products = ({ autnteficate, elem, orders, ch, index }) => {
     })
     if (check) return (
       <button className='item-by-btn' onClick={() => {
-          autnteficate ? addOrder() : navigate('/registration')
+          autnteficate ? addOrder() : navigate('/login')
           }}>
         To order</button>)
     return (<Link to='/orders'><button className='item-by-btn item-by-bt-dis'>In Order</button></Link>)

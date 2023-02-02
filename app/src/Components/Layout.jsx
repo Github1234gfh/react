@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 import { Header } from "./Header"
 
 
-export const Layout = ({autnteficate}) => {
+export const Layout = ({autnteficate, ch}) => {
 
 
     return (
@@ -12,7 +12,7 @@ export const Layout = ({autnteficate}) => {
             <header>
                 <div className="header-inner">
                     <div className="container">
-                        <Header autnteficate={autnteficate}/>
+                        <Header autnteficate={autnteficate} ch={ch}/>
                     </div>
                 </div>
             </header>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import { Navigate, redirect } from 'react-router-dom'
 import { IsValidEmail, IsValidPass, IsValidName, NullFieldInput } from '../Components/Validation'
 
-export const Registration = ({ch, checkor}) => {
+export const Registration = ({ ch, checkor, users, Chauser }) => {
 
 	const [errname, setErrname] = useState(false)
 	const [errName, setErrName] = useState(false)
@@ -30,19 +29,27 @@ export const Registration = ({ch, checkor}) => {
 	const changeErrname = (par) => { setErrname(par) }
 
 	const navigate = useNavigate()
-
 	const onSubmit = (e) => {
 		e.preventDefault()
-		NullFieldInput(pass, changeErrPass)
-		NullFieldInput(email, changeErrEmail)
-		NullFieldInput(name, changeErrName)
 		if (!errName && !errname && !errEmail && !erremail && !errPass && !errpass && !ERrpass) {
-			navigate("/");
+
+			const copy = Object.assign([], users);
+
+			copy.push({
+				name: name,
+				email: email,
+				password: pass,
+			});
 			localStorage.setItem('name', name);
 			localStorage.setItem('email', email);
 			localStorage.setItem('password', pass);
-			ch()
-			checkor()
+			ch(true);
+			checkor();
+			Chauser(copy);
+			navigate("/");
+		}
+		else {
+
 		}
 	}
 
@@ -90,7 +97,11 @@ export const Registration = ({ch, checkor}) => {
 				{
 					errpass ? <span style={{ color: 'red' }}>Password must include @, -!</span> : errPass ? <span style={{ color: 'red' }}>Password - required field</span> : ERrpass ? <span style={{ color: 'red' }}>Password must be more than 8 characters</span> : null
 				}
-				<input value={"Register"} className='btn-from' type='submit' />
+				<input value={"Register"} className='btn-from' onClick={() => {
+					NullFieldInput(pass, changeErrPass)
+					NullFieldInput(email, changeErrEmail)
+					NullFieldInput(name, changeErrName)
+				}} type='submit' />
 			</form>
 		</div>
 	)

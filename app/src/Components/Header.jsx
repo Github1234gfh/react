@@ -1,31 +1,29 @@
-import { useState } from "react"
+
 import { Link, Router } from "react-router-dom"
-import { Urls } from "./Urls"
 
-export const Header = ({autnteficate}) => {
 
-    const [urls, setUrls] = useState(Urls)
-    const [url, setUrl] = useState('Home')
+export const Header = ({ autnteficate, ch }) => {
 
-    return (
-        <div className="header">
-            {
-                Urls.map((elem, index) => {
-                    const copy = Object.assign([], urls)
-                    if (!autnteficate) {
-                        copy[1].show = false
-                    }
-                    if (elem.name === url) copy[index].show = false
-                    if (elem.show)
-                        return (
-                            <Link key={elem.name} to={elem.url} onClick={() => {
-                                setUrls(copy)
-                                setUrl(elem.name)
-                            }}>{elem.name}</Link>
-                        )
-                    copy[index].show = true
-                })
-            }
-        </div>
-    )
+	return (
+		<div className="header">
+			<Link to='/'>Home</Link>
+			{
+				autnteficate ?
+					<>
+						<Link to='/orders'>Orders</Link>
+						<a onClick={() => {
+							ch(false); localStorage.removeItem('email'); localStorage.removeItem('password'); localStorage.removeItem('name')
+
+						}
+
+						}>Logout</a>
+					</>
+					: <>
+						<Link to='/registration'>Registration</Link>
+						<Link to='/login'>Login</Link>
+					</>
+			}
+
+		</div>
+	)
 }   
