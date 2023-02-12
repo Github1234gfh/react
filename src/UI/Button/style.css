@@ -1,0 +1,19 @@
+.my-btn {
+    font-size: 20px;
+    padding: 10px;
+    width: 200px;
+    outline: none;
+    border: 3px solid rgb(65, 65, 255);
+    background: rgb(124, 124, 255);
+    box-shadow: 0 0 15px rgb(65, 65, 255);
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: .2s;
+}
+
+.my-btn:hover {
+    box-shadow: 0 0 5px rgb(65, 65, 255),
+                0 0 15px rgb(65, 65, 255),
+                0 0 20px rgb(65, 65, 255);
+}

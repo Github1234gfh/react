@@ -1,0 +1,63 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.back-inner {
+  width: 100%;
+  z-index: 0;
+  background: black;
+}
+
+.backgound {
+  opacity: .3;
+  width: 100%;
+  z-index: 1;
+}
+
+.main {
+  display: flex;
+}
+
+.content-main {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  left: 150px;
+  gap: 10px;
+  padding-left: 35px;
+  padding-top: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  padding: 10px;
+  background: rgb(38, 38, 38);
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgb(63, 63, 63);
+  color: white;
+  gap: 20px;
+}
+
+.text-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contenent{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.title {
+  font-size: 34px;
+}
+
+.text {
+  font-size: 18px;
+}
