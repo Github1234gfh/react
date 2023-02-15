@@ -1,0 +1,16 @@
+.my-btn {
+    font-size: 30px;
+    padding: 10px 30px;
+    border: 2px solid rgb(1, 196, 196);
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+    transition: .2s;
+    width: 100%;
+    color: black;
+}
+
+.my-btn:hover {
+    background: rgb(1, 196, 196);
+    color: white;
+}
