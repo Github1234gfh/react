@@ -69,7 +69,6 @@ export const Login = ({ aunteficate, ChnageAunteficate, users, setTitle }) => {
         })
         setError(true);
     }
-    console.log(users)
 
     return (
         <>
@@ -78,16 +77,16 @@ export const Login = ({ aunteficate, ChnageAunteficate, users, setTitle }) => {
                 <p>default password - {users[0].password} </p>
                 <h1>Login</h1>
                 {
-                    error? <span style={{color: 'red'}}>Email of Password is invalid</span>: null
+                    error? <span style={{color: 'red'}}>Email or Password is invalid</span>: null
                 }
                 {
                     emailDurty && EmailError ? <span style={{ color: 'red' }}>{EmailError}</span> : null
                 }
-                <Input onChange={OnchabgeEmail} onblur={Onblur} name={'email'} type={'email'} placeholder={'Email'} />
+                <Input err={error || (emailDurty && EmailError)} onChange={OnchabgeEmail} onblur={Onblur} name={'email'} type={'email'} placeholder={'Email'} />
                 {
                     passDury && PassError ? <span style={{ color: 'red' }}>{PassError}</span> : null
                 }
-                <Input onChange={OnchangePass} onblur={Onblur} type={'password'} name={'pass'} placeholder={'Password'} />
+                <Input err={error || (passDury && PassError)} onChange={OnchangePass} onblur={Onblur} type={'password'} name={'pass'} placeholder={'Password'} />
                 <Button disabled={btn} text={'Login'} />
             </form>
         </>

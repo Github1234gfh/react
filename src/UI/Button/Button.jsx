@@ -2,8 +2,6 @@ import './style.css'
 
 export const Button = ({ disabled,text, type}) => {
 
-    console.log(type)
-
     return (
         <>{
             type === 'danger'?

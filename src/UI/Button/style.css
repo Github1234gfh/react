@@ -3,6 +3,7 @@
     font-size: 25px;
     border: 2px solid black;
     background: white;
+    display: block;
 }
 
 .btn-hover {

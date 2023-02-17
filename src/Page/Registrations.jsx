@@ -46,7 +46,7 @@ export const Registration = ({ aunteficate, users, setUsers }) => {
         if (e === '') {
             setPassError('Field must not be empty');
         }
-        else if (e.length < 9) {
+        else if (e.length < 8) {
             setPassError('Password must be more 8 letters');
         } else {
             setPassError(null);
@@ -100,15 +100,15 @@ export const Registration = ({ aunteficate, users, setUsers }) => {
                         {
                             nameDurtu && NameError ? <span style={{ color: 'red' }}>{NameError}</span> : null
                         }
-                        <Input onChange={OnchangegName} value={name} onblur={Onblur} name={'name'} type={'text'} placeholder={'Name'} />
+                        <Input err={nameDurtu && NameError} onChange={OnchangegName} value={name} onblur={Onblur} name={'name'} type={'text'} placeholder={'Name'} />
                         {
                             emailDurty && EmailError ? <span style={{ color: 'red' }}>{EmailError}</span> : null
                         }
-                        <Input onChange={OnchabgeEmail} value={email} onblur={Onblur} type={'email'} name={'email'} placeholder={'Email'} />
+                        <Input err={emailDurty && EmailError} onChange={OnchabgeEmail} value={email} onblur={Onblur} type={'email'} name={'email'} placeholder={'Email'} />
                         {
                             passDury && PassError ? <span style={{ color: 'red' }}>{PassError}</span> : null
                         }
-                        <Input onChange={OnchangePass} value={pass} onblur={Onblur} type={'password'} name={'pass'} placeholder={'Password'} />
+                        <Input err={passDury && PassError} onChange={OnchangePass} value={pass} onblur={Onblur} type={'password'} name={'pass'} placeholder={'Password'} />
                         <Button disabled={btn} text={'Registration'} />
                     </form>
             }

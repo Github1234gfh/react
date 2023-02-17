@@ -19,10 +19,9 @@ export const Header = ({ aunteficate, title , setAunteficate}) => {
                         <NavLink className={'header-item'} to={'/orders'}>Orders</NavLink>
                         <NavLink onClick={() => setAunteficate(false)} className={isactive => active(isactive)}>Logout</NavLink>
                     </>
-
             }
             {
-                aunteficate?<h1 className="text" style={{alignSelf: 'center'}}>Hi - {title}</h1>
+                aunteficate?<h1 className="text" style={{justifySelf: 'flex-end'}}>Hi - {title}</h1>
                 :null
             }
             

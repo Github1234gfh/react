@@ -9,19 +9,28 @@ export const Cart = ({ aunteficate, cart, setCart, orders, setOrders }) => {
     useEffect(() => { if (!aunteficate) Navigate('/') });
 
 
-    const AddOrder = (e, index) => {
+    const AddOrder = () => {
         const copy = Object.assign([], orders)
-        copy.push(e)
-        setOrders(copy)
-        // const copycart = Object.assign([], cart)
-        // copy.splice(index, 1)
-        // setCart(copycart)
-        Navigate('/orders')
+        for (let i in cart) {
+            console.log(cart[i])
+            copy.push(cart[i])
+        }
+        setOrders(copy);
+        setCart([]);
+        Navigate('/orders');
     }
 
     const Add = (index) => {
         const copy = Object.assign([], cart)
         copy[index].count++
+        setCart(copy)
+    }
+
+    const Not = (index) => {
+        const copy = Object.assign([], cart)
+        if (copy[index].count > 1) {
+            copy[index].count--
+        }
         setCart(copy)
     }
 
@@ -31,28 +40,31 @@ export const Cart = ({ aunteficate, cart, setCart, orders, setOrders }) => {
         setCart(copy)
     }
     return (
-        <>
+        <div className="img-card">
             {aunteficate ?
                 cart.length !== 0 ?
-                    cart.map((item, index) => {
-                        return (
-                            <div className="img-card" key={item.id}>
-                                <h1 className="text">{item.name}</h1>
-                                <span onClick={() => Delete(index)}><Button type={'danger'} text={'Delete'} /></span>
-                                <div>
-                                    <p>Count {item.count}</p>
-                                    <span onClick={() => Add(index)}> <Button text={'+'} /></span>
-                                </div>
-
-                                <span onClick={() => AddOrder(item, index)}><Button text={'To order'} /></span>
-                            </div>
-                        )
-
-                    })
+                    <>
+                        {
+                            cart.map((item, index) => {
+                                return (
+                                    <div key={item.id} className={'fggfd'}>
+                                        <h1 className="text">{item.name}</h1>
+                                        <span onClick={() => Delete(index)}><Button type={'danger'} text={'Delete'} /></span>
+                                        <div style={{ display: 'flex', gap: 10 }}>
+                                            <p>Count {item.count}</p>
+                                            <span onClick={() => Not(index)}> <Button text={'-'} /></span>
+                                            <span onClick={() => Add(index)}> <Button text={'+'} /></span>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                        <span onClick={() => AddOrder()}><Button text={'Do order'} /></span>
+                    </>
                     : <h1>Cart is clear</h1>
                 :
                 null
             }
-        </>
+        </div>
     )
 }
