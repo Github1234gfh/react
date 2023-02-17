@@ -23,7 +23,7 @@ export const Animals = ({ albom, cart, setCart, aunteficate }) => {
         if (check) {  ; return (
             <span onClick={() => (AddCart(e))}><Button text={'Save'} /></span>
         )}
-        return (<Link to='/cart'><Button text={'To cart'} type={'danger'} /></Link>)
+        return (<Link to='/cart'><Button text={'To cart'} color={'red'} /></Link>)
     }
 
     return (

@@ -7,7 +7,7 @@ export const Home = ({albom, changeAlbom, cart, setCart, aunteficate}) => {
 
     const retri = async () => {
         await axios
-            .get('https://petstore.swagger.io/v2/pet/findByStatus?status=pending')
+            .get('https://petstore.swagger.io/v2/pet/findByStatus?status=sold')
             .then((rez) => {
                 changeAlbom(rez.data)
             })

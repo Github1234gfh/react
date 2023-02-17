@@ -16,8 +16,8 @@ export const Header = ({ aunteficate, title , setAunteficate}) => {
                     :
                     <>
                         <NavLink className={isactive => active(isactive)} to={'/cart'}>Cart</NavLink>
-                        <NavLink className={'header-item'} to={'/orders'}>Orders</NavLink>
-                        <NavLink onClick={() => setAunteficate(false)} className={isactive => active(isactive)}>Logout</NavLink>
+                        <NavLink className={isactive => active(isactive)} >Orders</NavLink>
+                        <NavLink onClick={() => setAunteficate(false)} className={'header-item'} to={'/orders'} style={{color: 'red'}} >Logout</NavLink>
                     </>
             }
             {
