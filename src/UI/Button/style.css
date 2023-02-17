@@ -1,0 +1,29 @@
+.me-btn {
+    padding: 5px 10px;
+    font-size: 25px;
+    border: 2px solid black;
+    background: white;
+}
+
+.btn-hover {
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-hover:hover {
+    background: rgb(243, 243, 243);
+}
+
+.btn-danger {
+    padding: 5px 10px;
+    font-size: 25px;
+    background: WHITE;
+    color:  RED;
+    border: 2px solid red;
+    transition: .2s;
+}
+
+.btn-danger:hover {
+    background: red;
+    color: white;
+}
